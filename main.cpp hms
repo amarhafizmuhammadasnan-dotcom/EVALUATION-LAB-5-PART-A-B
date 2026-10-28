@@ -1,0 +1,79 @@
+#include "PatientList.h"
+using namespace std;
+
+int main()
+{
+    LinkedList hospital;
+
+    cout << "========================================\n";
+    cout << " HOSPITAL PATIENT MANAGEMENT SYSTEM\n";
+    cout << "========================================\n";
+
+    // Add initial sample patients
+    hospital.InsertAt(CreatePatient(104, "Ahmed", 35, "Fever"), 0);
+    hospital.InsertAt(CreatePatient(101, "Ali", 22, "Flu"), 1);
+    hospital.InsertAt(CreatePatient(105, "Sara", 29, "Allergy"), 2);
+    hospital.InsertAt(CreatePatient(102, "Usman", 40, "Injury"), 3);
+    hospital.InsertAt(CreatePatient(103, "Ayesha", 25, "Cough"), 4);
+
+    cout << "\n1. INITIAL PATIENT LIST";
+    hospital.Print();
+
+    // Insert at head
+    hospital.Insert(CreatePatient(100, "Hassan", 31, "Headache"));
+    cout << "\n2. AFTER INSERTING AT HEAD";
+    hospital.Print();
+
+    // Insert at index 2
+    hospital.InsertAt(CreatePatient(106, "Fatima", 27, "Checkup"), 2);
+    cout << "\n3. AFTER INSERTING AT INDEX 2";
+    hospital.Print();
+
+    // Remove at index 3
+    PatientNode* removed = hospital.RemoveAt(3);
+    if (removed != NULL)
+    {
+        cout << "\nRemoved patient: " << removed->name << "\n";
+        delete removed;
+    }
+    cout << "\n4. AFTER REMOVING INDEX 3";
+    hospital.Print();
+
+    // Swap patients at indexes 0 and 2
+    hospital.Swap(0, 2);
+    cout << "\n5. AFTER SWAPPING INDEX 0 AND 2";
+    hospital.Print();
+
+    // Sort patients by ID
+    hospital.Sort();
+    cout << "\n6. AFTER SORTING BY PATIENT ID";
+    hospital.Print();
+
+    // Reverse the list
+    hospital.Reverse();
+    cout << "\n7. AFTER REVERSING THE LIST";
+    hospital.Print();
+
+    // Remove patient from head
+    removed = hospital.Remove();
+    if (removed != NULL)
+    {
+        cout << "\nRemoved from head: " << removed->name << "\n";
+        delete removed;
+    }
+    cout << "\n8. AFTER REMOVING FROM HEAD";
+    hospital.Print();
+
+    // Check collection status
+    cout << "\n9. COLLECTION STATUS\n";
+    if (hospital.IsEmpty())
+    {
+        cout << "The patient list is empty.\n";
+    }
+    else
+    {
+        cout << "The patient list contains " << hospital.GetCount() << " record(s).\n";
+    }
+
+    return 0;
+}
